@@ -1,0 +1,28 @@
+.modalWin, .fadowWin {
+  position: fixed;
+  max-width: 80%;
+  max-height: 80%;
+  overflow: auto;
+  padding: 20px;
+  text-align: center;
+  text-indent:25px;
+  font-family:Arial;
+  font-size: 11px;
+  box-sizing: border-box;
+  border-radius:5px;
+  border: ridge 2px white;
+  background-color: #fff;
+  background-color: rgba(255,255,255,0.8);
+  box-shadow: 10px 10px 10px rgba(0,0,0,0.7);
+  z-index: 1000;
+}
+.fadowWin {
+  animation: fadow_win 5s forwards;
+}
+
+@keyframes fadow_win {
+    0% { opacity: 0.0 }
+    20% { opacity: 1.0 }
+    80% { opacity: 1.0 }
+    100% { opacity: 0.0 }
+}
