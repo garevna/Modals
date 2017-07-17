@@ -1,0 +1,139 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Modals</title>
+<script src="https://drive.google.com/uc?export=download&id=0BxaMB69y7fvSZGJodVlVc0loWnM" onerror="alert('*Произошел сбой в процессе загрузки скрипта. Обновите страницу');" type="text/javascript"></script>
+<link rel="stylesheet" href="https://drive.google.com/uc?export=download&id=0BxaMB69y7fvSaEs2X3hQamNMa1E" type="text/css" />
+
+</head>
+
+<body>
+  <nav>  
+    <button onClick="var params = {}; params.type = 'alert'; params.text = alertText; try { var modalAlert = new Modals ( params ); } catch (err) { alert ('ALERT CONSTRUCTOR ERROR: ' + err.message); }">
+    <!--   -->
+    	alert
+    </button>
+    <button onClick="var params = {}; params.type = 'confirm'; params.text = 'Вы умеете летать?'; params.callback = function ( event ) { console.log (event.target, ' | ', event.currentTarget); alert (event.detail ); }; params.iconURL = 'https://d21tktytfo9riy.cloudfront.net/wp-content/uploads/2016/02/30124036/chuck-highlight-image.png'; params.headLineText = 'Дурацкий вопрос'; var modalConfirm = new Modals ( params );">
+    	confirm
+    </button>
+    <button onClick="var modalPrompt = new Modals ( { type: 'prompt', text: 'Выберите цвет фона: ', inputDataType: 'color', callback: function ( event ) { document.body.style.backgroundColor =  event.detail; } } )">
+        Color
+    </button>
+    <button onClick="var modalPrompt = new Modals ( { type: 'prompt', text: 'Введите дату: ', inputDataType: 'date', callback: function ( event ) { document.body.innerHTML +=  event.detail + '<br/>'; } } )">
+    	Date
+    </button>
+    <button onClick="var modalPrompt = new Modals ( { type: 'prompt', text: 'Введите текст, пожалуйста, но не нужно много букв - меня от них тошнит... И еще: если можно, воздержитесь от нецензурных выражений ', inputDataType: 'text', callback: function ( event ) { document.body.innerHTML +=  event.detail + '<br/>'; } } )">
+    	Text
+    </button>
+    <button onClick="var modalPrompt = new Modals ( { type: 'prompt', text: 'Введите число: ', inputDataType: 'number', callback: function ( event ) { document.body.innerHTML +=  event.detail + '<br/>'; } } )">
+    	Number
+    </button>
+    <button onClick="var modalPrompt = new Modals ( { type: 'fadow', text: 'Полетим на Марс, посмотрим на марсиан...' } )">
+    	Fadow
+    </button>
+    <button onClick="testRadio ( event )">
+    	Radio
+    </button>
+    <button onClick="testCheckbox ( event )">
+    	Checkbox
+    </button>
+    <button onClick="var modalPrompt = new Modals ( { type: 'prompt', text: 'Введите текст сообщения: ', inputDataType: 'textarea', callback: function ( event ) { document.body.innerHTML +=  event.detail + '<br/>'; } } )">
+    	Textarea
+    </button>
+    </nav>
+    <p id = 'demo'></p>
+<script>
+    function _prompt ( $text, $dataType ) {
+		
+		this.answer = ( function () {
+    		var answer = null;
+    		return function ( answerVal ) { return answer = answerVal; }
+    	})();
+		var modalPrompt = new Modals ( { type: 'prompt', text: $text, inputDataType: $dataType, callback: function ( event ) { document.body.innerHTML +=  event.detail + '<br/>'; } } )
+	}
+	function createModalWin ( event ) {
+		
+	}
+	var alertText = 'Добро пожаловать в мир асинхронного <b>JavaScript</b><h1>Прокрутка: событие scroll</h1> Событие onscroll происходит, когда элемент прокручивается. В отличие от события onwheel (колесико мыши), его могут генерировать только прокручиваемые элементы или окно window. Но зато оно генерируется всегда, при любой прокрутке, не обязательно мышиной. Каких-либо особенностей события здесь нет, разве что для его использования нужно отлично представлять, как получить текущее значение прокрутки или прокрутить документ. Об этом мы говорили ранее, в главе Размеры и прокрутка элементов.<h2>Некоторые области применения onscroll:</h2> Показ дополнительных элементов навигации при прокрутке.<br/>Подгрузка и инициализация элементов интерфейса, ставших видимыми после прокрутки.<br/> Вашему вниманию предлагаются несколько задач, которые вы можете решить сами или посмотреть использование onscroll на их примере.';
+	var _radioButData = [
+		{
+			val: "red",
+			text: "Красный"
+		},
+		{
+			val: "blue",
+			text: "Синий"
+		},
+		{
+			val: "yellow",
+			text: "Желтый"
+		},
+		{
+			val: "green",
+			text: "Зеленый"
+		}
+	];
+	var radioParams = {
+		type: 'prompt',
+		inputDataType: 'radio',
+		text: 'Укажите Ваш любимый цвет:',
+		radioButtonsData: _radioButData,
+		callback: function ( event ) {
+			document.body.innerHTML +=  event.detail + '<br/>'; 
+		}
+	};
+	function testRadio ( event ) {
+		var modalRadio = new Modals ( radioParams );
+		modalRadio.win.addEventListener ('confirm', function ( event ) {
+			alert ('Deleted!');
+		});
+	}
+	var _checkboxData = [
+		{
+			val: "1",
+			text: "Суп с фрикадельками"
+		},
+		{
+			val: "2",
+			text: "Борщ"
+		},
+		{
+			val: "3",
+			text: "Окрошка"
+		},
+		{
+			val: "4",
+			text: "Отбивная"
+		},
+		{
+			val: "5",
+			text: "Котлета куриная"
+		},
+		{
+			val: "6",
+			text: "Чай"
+		},
+		{
+			val: "7",
+			text: "Кофе"
+		}
+	];
+	var checkboxParams = {
+		type: 'prompt',
+		inputDataType: 'checkbox',
+		text: 'Выберите блюда:',
+		checkboxData: _checkboxData,
+		callback: function ( event ) {
+			document.body.innerHTML +=  event.detail + '<br/>'; 
+		}
+	};
+	function testCheckbox ( event ) {
+		var modalCheckbox = new Modals ( checkboxParams );
+		modalCheckbox.win.addEventListener ('confirm', function ( event ) {
+			alert ('Deleted!');
+		});
+	}
+</script>
+</body>
+</html>
